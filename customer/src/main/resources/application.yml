@@ -1,12 +1,13 @@
 server:
   port: 8080
+
 spring:
   application:
     name: customer
   datasource:
-    password: 1223
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
     url: jdbc:postgresql://localhost:5432/customer
-    username: mahdi312
   jpa:
     hibernate:
       ddl-auto: update
@@ -15,8 +16,16 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
+  zipkin:
+    base-url: http://localhost:9411
+  rabbitmq:
+    addresses: localhost:5672
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
 
 eureka:
+  instance:
+    hostname: localhost
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka

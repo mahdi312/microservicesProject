@@ -1,0 +1,4 @@
+/customer/src/main/resources/sensitive-information/
+/fraud/src/main/resources/sensitive-information/
+/notification/src/main/resources/sensitive-information/
+/sensitive-information/

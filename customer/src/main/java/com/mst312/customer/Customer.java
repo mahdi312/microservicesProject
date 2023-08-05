@@ -1,10 +1,11 @@
 package com.mst312.customer;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Data
 @Builder
@@ -25,4 +26,8 @@ public class Customer {
     private String lastName;
 
     private String email;
+
+    public String getFullName() {
+        return Customer.builder().firstName + " " + Customer.builder().lastName;
+    }
 }

@@ -10,15 +10,18 @@
     <module>fraud</module>
     <module>euroka-server</module>
     <module>clients</module>
+    <module>notification</module>
+    <module>api-gateway</module>
+    <module>amqp</module>
   </modules>
   <name>microservicesProject</name>
   <url>https://maven.apache.org</url>
 
   <properties>
-    <spring.boot.version>3.1.1</spring.boot.version>
-    <spring.boot.test.version>3.1.0</spring.boot.test.version>
-    <spring.boot.maven.plugin.version>3.1.1</spring.boot.maven.plugin.version>
-    <spring.cloud.dependency.version>2022.0.3</spring.cloud.dependency.version>
+    <spring.boot.version>2.7.14</spring.boot.version>
+    <spring.boot.test.version>2.7.14</spring.boot.test.version>
+    <spring.boot.maven.plugin.version>2.7.14</spring.boot.maven.plugin.version>
+    <spring.cloud.dependency.version>2021.0.8</spring.cloud.dependency.version>
   </properties>
 
   <dependencyManagement>

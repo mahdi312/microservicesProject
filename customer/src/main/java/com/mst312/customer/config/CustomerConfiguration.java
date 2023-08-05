@@ -1,4 +1,4 @@
-package com.mst312.customer;
+package com.mst312.customer.config;
 
 import org.springframework.context.annotation.Configuration;
 

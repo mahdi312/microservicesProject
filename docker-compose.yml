@@ -36,6 +36,8 @@ services:
       - "9411:9411"
     volumes:
       - zipkin:/data
+    networks:
+      - spring
 
   rabbitmq:
     image: rabbitmq:3.9.11-management-alpine
@@ -48,6 +50,93 @@ services:
       RABBITMQ_DEFAULT_PASS: ${hh**}
     volumes:
       - rabbitmq:/var/lib/rabbitmq
+    networks:
+      - spring
+
+  eureka-server:
+    image: mahdi312/eureka-server:latest
+    container_name: eureka-server
+    ports:
+      - 8761:8761
+    environment:
+      - SPRING_PROFILES_ACTIVE = docker
+    networks:
+      - spring
+    depends_on:
+      - zipkin
+
+  api-gateway:
+    image: mahdi312/api-gateway:latest
+    container_name: api-gateway
+    ports:
+      - 9090:9090
+    environment:
+      - SPRING_PROFILES_ACTIVE = docker
+    networks:
+      - spring
+    depends_on:
+      - zipkin
+      - eureka-server
+
+  customer:
+    image: mahdi312/customer:latest
+    container_name: customer
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_PROFILES_ACTIVE = docker
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - zipkin
+      - eureka-server
+      - rabbitmq
+
+  notification:
+    image: mahdi312/notification:latest
+    container_name: notification
+    ports:
+      - 8090:8090
+    environment:
+      - SPRING_PROFILES_ACTIVE = docker
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - zipkin
+      - eureka-server
+      - rabbitmq
+
+  fraud:
+    image: mahdi312/fraud:latest
+    container_name: fraud
+    ports:
+      - 8081:8081
+    environment:
+      - SPRING_PROFILES_ACTIVE = docker
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - zipkin
+      - eureka-server
+      - rabbitmq
+
+  fraud-1:
+    image: mahdi312/fraud:latest
+    container_name: fraud-1
+    ports:
+      - 8082:8082
+    environment:
+      - SPRING_PROFILES_ACTIVE = docker
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - zipkin
+      - eureka-server
+      - rabbitmq
 
 networks:
   postgres:
@@ -56,6 +145,7 @@ networks:
     driver: bridge
 
 volumes:
+  spring:
   postgres:
   pgadmin:
   rabbitmq:

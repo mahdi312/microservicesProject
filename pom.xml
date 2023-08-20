@@ -8,7 +8,7 @@
     <modules>
         <module>customer</module>
         <module>fraud</module>
-        <module>euroka-server</module>
+        <module>eureka-server</module>
         <module>clients</module>
         <module>notification</module>
         <module>api-gateway</module>
@@ -22,7 +22,6 @@
         <spring.boot.maven.plugin.version>2.7.14</spring.boot.maven.plugin.version>
         <spring.cloud.dependency.version>2021.0.8</spring.cloud.dependency.version>
         <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
-        <image>mahdi312/${project.artifactId}:${project.version}</image>
     </properties>
 
     <dependencyManagement>
@@ -97,6 +96,8 @@
                             </platforms>
                         </from>
                         <to>
+                            <image>registry.hub.docker.com/mahdi312/${project.artifactId}:${project.version}</image>
+                            <!--                            <credHelper>wincred</credHelper>-->
                             <tags>
                                 <tag>latest</tag>
                             </tags>

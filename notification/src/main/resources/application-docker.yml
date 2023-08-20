@@ -34,7 +34,8 @@ server:
 
 eureka:
   instance:
-    hostname: eureka-server
+    hostname: notification
+    prefer-ip-address: true
   client:
     fetch-registry: true
     register-with-eureka: true

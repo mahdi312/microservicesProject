@@ -24,7 +24,8 @@ spring:
     password: ${RABBITMQ_PASSWORD}
 eureka:
   instance:
-    hostname: eureka-server
+    hostname: fraud
+    prefer-ip-address: true
   client:
     fetch-registry: true
     register-with-eureka: true
